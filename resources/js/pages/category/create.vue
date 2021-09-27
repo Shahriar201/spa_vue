@@ -21,8 +21,11 @@
                 <form @submit.prevent="createCategory">
                   <div class="form-group">
                     <label for="name">Category Name</label>
-                    <input type="text" v-model="categoryForm.name" name="name" class="form-control" placeholder="Enter Category Name" />
-                    <div v-if="categoryForm.errors.has('name')" v-html="categoryForm.errors.get('name')" />
+                    <!-- <input type="text" v-model="categoryForm.name" name="name" class="form-control" placeholder="Enter Category Name" />
+                    <div v-if="categoryForm.errors.has('name')" v-html="categoryForm.errors.get('name')" /> -->
+
+                    <input v-model="categoryForm.name" type="text" name="name" class="form-control" :class="{ 'is-invalid': categoryForm.errors.has('name') }">
+                        <has-error :form="categoryForm" field="name"></has-error>
                   </div>
 
                   <div class="form-group">
@@ -40,6 +43,9 @@
 
 <script>
 import Form from 'vform'
+
+// Vue.component(HasError.name, HasError)
+// Vue.component(AlertError.name, AlertError)
 
 export default {
   data(){
@@ -60,7 +66,12 @@ export default {
         // });
         
         this.categoryForm.post('/api/category').then(({data}) => {
-          consol.log(data)
+          this.categoryForm.name= '';
+
+          this.$toast.success({
+            title:'Success',
+            message:'Category created successfully!'
+})
           })
 
       }

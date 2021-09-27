@@ -24,7 +24,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "cxlt-vue2-toastr": "^1.1.1",
         "vform": "^2.1.1",
-        "vue-router": "^3.5.2"
+        "vue-router": "^3.5.2",
+        "vue-toast-notification": "^2.0.1"
     }
 }
